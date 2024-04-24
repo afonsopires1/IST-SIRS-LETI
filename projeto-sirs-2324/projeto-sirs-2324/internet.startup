@@ -8,5 +8,5 @@ ip link set dev eth1 up
 ip link set dev eth2 up
 ip link set dev eth3 up
 ip link set dev eth4 up
-ip route add 99.2.0.0/20 dev eth1 via 101.6.6.1
-ip route add 99.4.0.0/22 dev eth0 via 100.6.6.2
+ip route add 4.2.0.0/20 dev eth1 via 101.6.6.1
+ip route add 4.4.0.0/22 dev eth0 via 100.6.6.2
