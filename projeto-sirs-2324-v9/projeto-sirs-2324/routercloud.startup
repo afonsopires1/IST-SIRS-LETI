@@ -1,0 +1,41 @@
+ip addr add dev eth0 4.4.3.254/24 
+ip addr add dev eth1 100.6.6.2/24 
+ip link set dev eth0 up
+ip link set dev eth1 up
+ip route add default dev eth1 via 100.6.6.254
+
+cp -r /shared/openvpn  /etc/
+
+cd /etc/openvpn/
+mkdir -p /dev/net
+mknod /dev/net/tun c 10 200
+chmod 600 /dev/net/tun
+
+openvpn server.conf &
+
+
+iptables -A INPUT -p icmp -j ACCEPT
+iptables -A INPUT -p udp --dport openvpn -j ACCEPT
+iptables -A INPUT -p udp --sport openvpn -j ACCEPT #usado
+iptables -A INPUT -p tcp --sport 1024:65535 -j ACCEPT
+iptables -A FORWARD -p icmp -j ACCEPT
+iptables -A FORWARD -p udp --dport 33434:33534 -j ACCEPT #usado no traceroute
+iptables -A OUTPUT -p icmp -j ACCEPT
+iptables -A OUTPUT -p udp --sport 33434:33534 -j ACCEPT
+iptables -A OUTPUT -p udp --sport openvpn -j ACCEPT
+iptables -A OUTPUT -p udp --dport openvpn -j ACCEPT
+iptables -P INPUT DROP
+iptables -P FORWARD DROP
+iptables -P OUTPUT DROP
+iptables -A FORWARD -p tcp ! -s 4.4.0.0/22 -d 4.4.3.1 -m multiport --dports 80,443,8443 -j ACCEPT
+iptables -A FORWARD -p tcp ! -d 4.4.0.0/22 -s 4.4.3.1 -m multiport --sports 80,443,8443 -j ACCEPT
+iptables -A FORWARD -p tcp ! -s 4.4.0.0/22 -d 4.4.3.2 -m multiport --dports 80,443,8443 -j ACCEPT
+iptables -A FORWARD -p tcp ! -d 4.4.0.0/22 -s 4.4.3.2 -m multiport --sports 80,443,8443 -j ACCEPT
+iptables -A FORWARD -p tcp ! -s 4.4.0.0/22 -d 4.4.3.3 -m multiport --dports 80,443,8443 -j ACCEPT
+iptables -A FORWARD -p tcp ! -d 4.4.0.0/22 -s 4.4.3.3 -m multiport --sports 80,443,8443 -j ACCEPT
+iptables -A FORWARD -s 4.4.0.0/22 -d 4.4.0.0/22 -i tun0 -j ACCEPT
+iptables -A FORWARD -d 4.4.0.0/22 -s 4.4.0.0/22 -o tun0 -j ACCEPT
+
+
+iptables -A FORWARD ! -s 4.4.0.0/22 ! -d 4.4.0.0/22 -j ACCEPT
+iptables -A FORWARD ! -s 4.4.0.0/22 -d 4.4.0.0/22 -j ACCEPT

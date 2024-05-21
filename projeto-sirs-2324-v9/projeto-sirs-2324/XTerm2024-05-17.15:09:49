@@ -1,0 +1,262 @@
+--- Startup Commands Log
+++ ip addr add dev eth0 4.4.3.254/24
+++ ip addr add dev eth1 100.6.6.2/24
+++ ip link set dev eth0 up
+++ ip link set dev eth1 up
+++ ip route add default dev eth1 via 100.6.6.254
+++ cp -r /shared/openvpn /etc/
+++ cd /etc/openvpn/
+++ mkdir -p /dev/net
+++ mknod /dev/net/tun c 10 200
+++ chmod 600 /dev/net/tun
+++ openvpn server.conf
+Fri May 17 13:57:28 2024 WARNING: file '/etc/openvpn/server.key' is group or oth
+ers accessible
+Fri May 17 13:57:28 2024 WARNING: file 'ta.key' is group or others accessible
+Fri May 17 13:57:28 2024 OpenVPN 2.4.7 x86_64-pc-linux-gnu [SSL (OpenSSL)] [LZO]
+ [LZ4] [EPOLL] [PKCS11] [MH/PKTINFO] [AEAD] built on Feb 20 2019
+Fri May 17 13:57:28 2024 library versions: OpenSSL 1.1.1d  10 Sep 2019, LZO 2.10
+Fri May 17 13:57:28 2024 WARNING: --ifconfig-pool-persist will not work with --d
+uplicate-cn
+Fri May 17 13:57:28 2024 Diffie-Hellman initialized with 2048 bit key
+Fri May 17 13:57:28 2024 Outgoing Control Channel Authentication: Using 160 bit 
+message hash 'SHA1' for HMAC authentication
+Fri May 17 13:57:28 2024 Incoming Control Channel Authentication: Using 160 bit 
+message hash 'SHA1' for HMAC authentication
+Fri May 17 13:57:28 2024 ROUTE_GATEWAY 100.6.6.254/255.255.255.0 IFACE=eth1 HWAD
+DR=42:ec:f6:bf:aa:83
+Fri May 17 13:57:28 2024 TUN/TAP device tun0 opened
+Fri May 17 13:57:28 2024 TUN/TAP TX queue length set to 100
+Fri May 17 13:57:28 2024 /sbin/ip link set dev tun0 up mtu 1500
+Fri May 17 13:57:29 2024 /sbin/ip addr add dev tun0 local 4.4.0.1 peer 4.4.0.2
+Fri May 17 13:57:29 2024 /sbin/ip route add 4.4.0.0/22 via 4.4.0.2
+Fri May 17 13:57:29 2024 Could not determine IPv4/IPv6 protocol. Using AF_INET
+Fri May 17 13:57:29 2024 Socket Buffers: R=[212992->212992] S=[212992->212992]
+Fri May 17 13:57:29 2024 UDPv4 link local (bound): [AF_INET][undef]:1194
+Fri May 17 13:57:29 2024 UDPv4 link remote: [AF_UNSPEC]
+Fri May 17 13:57:29 2024 MULTI: multi_init called, r=256 v=256
+Fri May 17 13:57:29 2024 IFCONFIG POOL: base=4.4.0.4 size=254, ipv6=0
+Fri May 17 13:57:29 2024 ifconfig_pool_read(), in='client,4.4.0.4', TODO: IPv6
+Fri May 17 13:57:29 2024 succeeded -> ifconfig_pool_set()
+Fri May 17 13:57:29 2024 IFCONFIG POOL LIST
+Fri May 17 13:57:29 2024 client,4.4.0.4
+Fri May 17 13:57:29 2024 Initialization Sequence Completed
+Fri May 17 13:57:34 2024 4.2.4.2:59406 TLS: Initial packet from [AF_INET]4.2.4.2
+:59406, sid=0ec0f386 8622070b
+Fri May 17 13:57:34 2024 4.2.4.2:59406 VERIFY OK: depth=1, CN=Easy-RSA CA
+Fri May 17 13:57:34 2024 4.2.4.2:59406 VERIFY OK: depth=0, CN=client
+Fri May 17 13:57:34 2024 4.2.4.2:59406 peer info: IV_VER=2.4.7
+Fri May 17 13:57:34 2024 4.2.4.2:59406 peer info: IV_PLAT=linux
+Fri May 17 13:57:34 2024 4.2.4.2:59406 peer info: IV_PROTO=2
+Fri May 17 13:57:34 2024 4.2.4.2:59406 peer info: IV_NCP=2
+Fri May 17 13:57:34 2024 4.2.4.2:59406 peer info: IV_LZ4=1
+Fri May 17 13:57:34 2024 4.2.4.2:59406 peer info: IV_LZ4v2=1
+Fri May 17 13:57:34 2024 4.2.4.2:59406 peer info: IV_LZO=1
+Fri May 17 13:57:34 2024 4.2.4.2:59406 peer info: IV_COMP_STUB=1
+Fri May 17 13:57:34 2024 4.2.4.2:59406 peer info: IV_COMP_STUBv2=1
+Fri May 17 13:57:34 2024 4.2.4.2:59406 peer info: IV_TCPNL=1
+Fri May 17 13:57:34 2024 4.2.4.2:59406 Control Channel: TLSv1.3, cipher TLSv1.3 
+TLS_AES_256_GCM_SHA384, 2048 bit RSA
+Fri May 17 13:57:34 2024 4.2.4.2:59406 [client] Peer Connection Initiated with [
+AF_INET]4.2.4.2:59406
+Fri May 17 13:57:34 2024 client/4.2.4.2:59406 MULTI_sva: pool returned IPv4=4.4.
+0.6, IPv6=(Not enabled)
+Fri May 17 13:57:34 2024 client/4.2.4.2:59406 MULTI: Learn: 4.4.0.6 -> client/4.
+2.4.2:59406
+Fri May 17 13:57:34 2024 client/4.2.4.2:59406 MULTI: primary virtual IP for clie
+nt/4.2.4.2:59406: 4.4.0.6
+Fri May 17 13:57:34 2024 4.2.4.1:34482 TLS: Initial packet from [AF_INET]4.2.4.1
+:34482, sid=ba215754 2246d87f
+Fri May 17 13:57:34 2024 4.2.4.1:34482 VERIFY OK: depth=1, CN=Easy-RSA CA
+Fri May 17 13:57:34 2024 4.2.4.1:34482 VERIFY OK: depth=0, CN=client
+Fri May 17 13:57:34 2024 4.2.4.1:34482 peer info: IV_VER=2.4.7
+Fri May 17 13:57:34 2024 4.2.4.1:34482 peer info: IV_PLAT=linux
+Fri May 17 13:57:34 2024 4.2.4.1:34482 peer info: IV_PROTO=2
+Fri May 17 13:57:34 2024 4.2.4.1:34482 peer info: IV_NCP=2
+Fri May 17 13:57:34 2024 4.2.4.1:34482 peer info: IV_LZ4=1
+Fri May 17 13:57:34 2024 4.2.4.1:34482 peer info: IV_LZ4v2=1
+Fri May 17 13:57:34 2024 4.2.4.1:34482 peer info: IV_LZO=1
+Fri May 17 13:57:34 2024 4.2.4.1:34482 peer info: IV_COMP_STUB=1
+Fri May 17 13:57:34 2024 4.2.4.1:34482 peer info: IV_COMP_STUBv2=1
+Fri May 17 13:57:34 2024 4.2.4.1:34482 peer info: IV_TCPNL=1
+Fri May 17 13:57:34 2024 4.2.4.1:34482 Control Channel: TLSv1.3, cipher TLSv1.3 
+TLS_AES_256_GCM_SHA384, 2048 bit RSA
+Fri May 17 13:57:34 2024 4.2.4.1:34482 [client] Peer Connection Initiated with [
+AF_INET]4.2.4.1:34482
+Fri May 17 13:57:34 2024 client/4.2.4.1:34482 MULTI_sva: pool returned IPv4=4.4.
+0.10, IPv6=(Not enabled)
+Fri May 17 13:57:34 2024 client/4.2.4.1:34482 MULTI: Learn: 4.4.0.10 -> client/4
+.2.4.1:34482
+Fri May 17 13:57:34 2024 client/4.2.4.1:34482 MULTI: primary virtual IP for clie
+nt/4.2.4.1:34482: 4.4.0.10
+--- End Startup Commands Log
+root@routercloud:/# ping 4.4.3.88
+PING 4.4.3.88 (4.4.3.88) 56(84) bytes of data.
+64 bytes from 4.4.3.88: icmp_seq=1 ttl=64 time=5.50 ms
+64 bytes from 4.4.3.88: icmp_seq=2 ttl=64 time=1.63 ms
+^C
+--- 4.4.3.88 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 3ms
+rtt min/avg/max/mdev = 1.629/3.562/5.495/1.933 ms
+root@routercloud:/# oing 4.4.1.101
+bash: oing: command not found
+root@routercloud:/# ping 4.4.1.101
+PING 4.4.1.101 (4.4.1.101) 56(84) bytes of data.
+^C
+--- 4.4.1.101 ping statistics ---
+3 packets transmitted, 0 received, 100% packet loss, time 45ms
+
+root@routercloud:/# ping 4.4.1.101
+PING 4.4.1.101 (4.4.1.101) 56(84) bytes of data.
+^C
+--- 4.4.1.101 ping statistics ---
+1 packets transmitted, 0 received, 100% packet loss, time 0ms
+
+root@routercloud:/# ping 4.4.1.101
+PING 4.4.1.101 (4.4.1.101) 56(84) bytes of data.
+^C
+--- 4.4.1.101 ping statistics ---
+1 packets transmitted, 0 received, 100% packet loss, time 0ms
+
+root@routercloud:/# ping 4.4.1.102
+PING 4.4.1.102 (4.4.1.102) 56(84) bytes of data.
+^C
+--- 4.4.1.102 ping statistics ---
+9 packets transmitted, 0 received, 100% packet loss, time 198ms
+
+root@routercloud:/# 
+root@routercloud:/# 
+root@routercloud:/# 
+root@routercloud:/# 
+root@routercloud:/# 
+root@routercloud:/# 
+root@routercloud:/# ping 4.4.3.88
+PING 4.4.3.88 (4.4.3.88) 56(84) bytes of data.
+64 bytes from 4.4.3.88: icmp_seq=1 ttl=64 time=1.62 ms
+64 bytes from 4.4.3.88: icmp_seq=2 ttl=64 time=1.62 ms
+64 bytes from 4.4.3.88: icmp_seq=3 ttl=64 time=1.56 ms
+64 bytes from 4.4.3.88: icmp_seq=4 ttl=64 time=1.66 ms
+64 bytes from 4.4.3.88: icmp_seq=5 ttl=64 time=1.58 ms
+^C
+--- 4.4.3.88 ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 12ms
+rtt min/avg/max/mdev = 1.562/1.606/1.655/0.060 ms
+root@routercloud:/# ping 4.4.1.101
+PING 4.4.1.101 (4.4.1.101) 56(84) bytes of data.
+^C
+--- 4.4.1.101 ping statistics ---
+7 packets transmitted, 0 received, 100% packet loss, time 150ms
+
+root@routercloud:/# ping 4.4.1.102
+PING 4.4.1.102 (4.4.1.102) 56(84) bytes of data.
+^C
+--- 4.4.1.102 ping statistics ---
+2 packets transmitted, 0 received, 100% packet loss, time 5ms
+
+root@routercloud:/# ping 4.4.1.2  
+PING 4.4.1.2 (4.4.1.2) 56(84) bytes of data.
+^C
+--- 4.4.1.2 ping statistics ---
+3 packets transmitted, 0 received, 100% packet loss, time 40ms
+
+root@routercloud:/# ping 4.4.1.2
+PING 4.4.1.2 (4.4.1.2) 56(84) bytes of data.
+
+
+^C
+--- 4.4.1.2 ping statistics ---
+4 packets transmitted, 0 received, 100% packet loss, time 79ms
+
+root@routercloud:/# 
+root@routercloud:/# 
+root@routercloud:/# 
+root@routercloud:/# 
+root@routercloud:/# 
+root@routercloud:/# 
+root@routercloud:/# 
+root@routercloud:/# 
+root@routercloud:/# 
+root@routercloud:/# 
+root@routercloud:/# 
+root@routercloud:/# 
+root@routercloud:/# 
+root@routercloud:/# 
+root@routercloud:/# 
+root@routercloud:/# ping 4.4.3.88
+PING 4.4.3.88 (4.4.3.88) 56(84) bytes of data.
+64 bytes from 4.4.3.88: icmp_seq=1 ttl=64 time=2.23 ms
+64 bytes from 4.4.3.88: icmp_seq=2 ttl=64 time=1.66 ms
+64 bytes from 4.4.3.88: icmp_seq=3 ttl=64 time=1.71 ms
+^C
+--- 4.4.3.88 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 6ms
+rtt min/avg/max/mdev = 1.660/1.865/2.231/0.261 ms
+root@routercloud:/# ping 4.4.3.3
+PING 4.4.3.3 (4.4.3.3) 56(84) bytes of data.
+64 bytes from 4.4.3.3: icmp_seq=1 ttl=64 time=3.63 ms
+64 bytes from 4.4.3.3: icmp_seq=2 ttl=64 time=1.72 ms
+^C
+--- 4.4.3.3 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 3ms
+rtt min/avg/max/mdev = 1.719/2.676/3.633/0.957 ms
+root@routercloud:/# iptables -P FORWARD DROP
+root@routercloud:/# iptables -P INPUT DROP  
+root@routercloud:/# ping 4.4.3.3
+PING 4.4.3.3 (4.4.3.3) 56(84) bytes of data.
+^C
+--- 4.4.3.3 ping statistics ---
+2 packets transmitted, 0 received, 100% packet loss, time 26ms
+
+root@routercloud:/# ping 4.4.3.88
+PING 4.4.3.88 (4.4.3.88) 56(84) bytes of data.
+^C
+--- 4.4.3.88 ping statistics ---
+3 packets transmitted, 0 received, 100% packet loss, time 29ms
+
+root@routercloud:/# ping 4.4.3.88
+PING 4.4.3.88 (4.4.3.88) 56(84) bytes of data.
+^C
+--- 4.4.3.88 ping statistics ---
+40 packets transmitted, 0 received, 100% packet loss, time 963ms
+
+root@routercloud:/# ^C
+root@routercloud:/# 
+root@routercloud:/# 
+root@routercloud:/# 
+root@routercloud:/# 
+root@routercloud:/# iptables -A FORWARD -p icmp --icmp-type echo-reply -j ACCEPT 
+root@routercloud:/# iptables -A FORWARD -p icmp --icmp-type echo-request -j ACCEPT 
+root@routercloud:/# ping 4.4.3.88
+PING 4.4.3.88 (4.4.3.88) 56(84) bytes of data.
+^C
+--- 4.4.3.88 ping statistics ---
+3 packets transmitted, 0 received, 100% packet loss, time 54ms
+
+root@routercloud:/# iptables -L
+Chain FORWARD (policy DROP)
+target     prot opt source               destination         
+ACCEPT     icmp --  anywhere             anywhere             icmp echo-reply
+ACCEPT     icmp --  anywhere             anywhere             icmp echo-request
+
+Chain INPUT (policy DROP)
+target     prot opt source               destination         
+
+Chain OUTPUT (policy ACCEPT)
+target     prot opt source               destination         
+root@routercloud:/# ping 4.4.3.88
+PING 4.4.3.88 (4.4.3.88) 56(84) bytes of data.
+^C
+--- 4.4.3.88 ping statistics ---
+2 packets transmitted, 0 received, 100% packet loss, time 33ms
+
+root@routercloud:/# iptables -A INPUT -p icmp --icmp-type echo-request -j ACCEPT 
+root@routercloud:/# iptables -A INPUT -p icmp --icmp-type echo-reply -j ACCEPT 
+root@routercloud:/# ping 4.4.3.88
+PING 4.4.3.88 (4.4.3.88) 56(84) bytes of data.
+64 bytes from 4.4.3.88: icmp_seq=1 ttl=64 time=0.378 ms
+64 bytes from 4.4.3.88: icmp_seq=2 ttl=64 time=0.632 ms
+^C
+--- 4.4.3.88 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 31ms
+rtt min/avg/max/mdev = 0.378/0.505/0.632/0.127 ms
+root@routercloud:/# 

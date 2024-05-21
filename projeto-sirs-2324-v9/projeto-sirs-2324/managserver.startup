@@ -1,0 +1,38 @@
+ip addr add dev eth0 4.4.3.88/24 
+ip addr add dev eth1 4.4.1.88/24 
+ip link set dev eth0 up
+ip link set dev eth1 up
+ip route add default via 4.4.3.254
+
+/etc/init.d/ssh start
+
+
+#caso seja para ligar diretamente À root
+
+cd /root/
+mkdir .ssh
+chmod 700 /root/.ssh/
+cp /shared/ssh/managServer/* /root/.ssh
+
+
+
+#caso seja para ligar a um user admin
+
+useradd -m -s /bin/bash admin
+echo "admin:1234" | chpasswd
+chown -R admin:admin /home/admin
+chmod 700 /home/admin
+
+su -c 'mkdir /home/admin/.ssh; chmod 700 /home/admin/.ssh; cp /shared/ssh/managServer/* /home/admin/.ssh/' admin
+
+su -c 'cp /shared/ssh/appservers/managServer_keys/* /home/admin/.ssh' admin
+
+su -c 'chmod 600 /home/admin/.ssh/id_rsa' admin
+su -c 'chmod 644 /home/admin/.ssh/id_rsa.pub' admin
+su -c 'chmod 644 /home/admin/.ssh/known_hosts' admin
+su -c 'chmod 600 /home/admin/.ssh/authorized_keys' admin 
+
+
+
+
+

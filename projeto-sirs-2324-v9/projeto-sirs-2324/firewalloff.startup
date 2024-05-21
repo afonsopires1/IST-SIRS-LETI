@@ -1,0 +1,31 @@
+ifconfig eth0 up
+ifconfig eth1 up
+ifconfig eth0 hw ether 04:00:00:00:01:00
+ifconfig eth1 hw ether 04:00:00:00:01:01
+brctl addbr br0
+brctl addif br0 eth0
+brctl addif br0 eth1
+ifconfig br0 up
+
+iptables -P INPUT DROP
+iptables -P FORWARD DROP
+iptables -P OUTPUT DROP
+
+
+iptables -A OUTPUT -p icmp -j ACCEPT
+iptables -A INPUT -p icmp -j ACCEPT
+iptables -A FORWARD -p icmp -j ACCEPT
+
+iptables -A FORWARD -p udp --sport openvpn -j ACCEPT  
+iptables -A FORWARD -p udp --dport openvpn -j ACCEPT
+
+iptables -A FORWARD ! -s 4.2.0.0/20 -d 4.2.0.0/20 -j ACCEPT
+iptables -A FORWARD -p tcp -d 4.4.3.1 -s 4.2.0.0/20 -m multiport --dports 80,443,8443 -j ACCEPT
+iptables -A FORWARD -p tcp -d 4.4.3.2 -s 4.2.0.0/20 -m multiport --dports 80,443,8443 -j ACCEPT
+iptables -A FORWARD -p tcp -d 4.4.3.3 -s 4.2.0.0/20 -m multiport --dports 80,443,8443 -j ACCEPT
+iptables -A FORWARD -p tcp -s 4.4.3.1 -d 4.2.0.0/20 -m multiport --sports 80,443,8443 -j ACCEPT
+iptables -A FORWARD -p tcp -s 4.4.3.2 -d 4.2.0.0/20 -m multiport --sports 80,443,8443 -j ACCEPT
+iptables -A FORWARD -p tcp -s 4.4.3.3 -d 4.2.0.0/20 -m multiport --sports 80,443,8443 -j ACCEPT
+
+iptables -A FORWARD ! -s 4.2.0.0/20 ! -d 4.2.0.0/20 -j ACCEPT
+iptables -A FORWARD ! -s 4.2.0.0/20 -d 4.2.0.0/20 -j ACCEPT

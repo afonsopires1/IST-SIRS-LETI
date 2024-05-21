@@ -1,0 +1,36 @@
+ip addr add dev eth0 4.4.3.3/24 
+ip addr add dev eth1 4.4.1.3/24 
+ip link set dev eth0 up
+ip link set dev eth1 up
+ip route add default via 4.4.3.254
+
+
+/etc/init.d/ssh start
+
+cd /root/
+mkdir .ssh
+chmod 700 /root/.ssh/
+
+cp /shared/ssh/appservers/authorized_keys /root/.ssh/
+chmod 600 /root/.ssh/authorized_keys
+
+
+#caso seja para ligar a um user admin
+
+useradd -m -s /bin/bash admin
+echo "admin:1234" | chpasswd
+chown -R admin:admin /home/admin
+chmod 700 /home/admin
+
+su -c 'mkdir /home/admin/.ssh; chmod 700 /home/admin/.ssh; cp /shared/ssh/managServer/* /home/admin/.ssh/' admin
+
+su -c 'cp /shared/ssh/appservers/authorized_keys /home/admin/.ssh' admin
+
+su -c 'chmod 600 /home/admin/.ssh/authorized_keys' admin 
+
+/etc/init.d/apache2 start
+a2enmod ssl
+cp /shared/ports.conf /etc/apache2/
+cp /shared/default-ssl.conf /etc/apache2/sites-available
+/etc/init.d/apache2 restart
+cp /shared/index.html /var/www/html

@@ -1,0 +1,28 @@
+    1  ping 4.4.3.88
+    2  traceroute 4.4.3.88
+    3  history 
+    4  /etc/init.d/ssh start
+    5  ssh admin@4.4.3.88
+    6  ssh-keygen -t rsa
+    7  cd
+    8  cd .ssh/
+    9  ls
+   10  ls -l
+   11  pwd
+   12  chmod 700 /root/.ssh/
+   13  cat id_rsa.pub 
+   14  cd
+   15  ssh admin@4.4.3.88
+   16  ssh admin@4.4.3.88 -v
+   17  ssh root@4.4.3.88 -v
+   18  cat id_rsa.pub 
+   19  cd .ssh/
+   20  cat id_rsa.pub 
+   21  ssh root@4.4.3.88 -v
+   22  ssh admin@4.4.3.88 -v
+   23  history 
+   24  history > ms1-ssh-history.txt /shared/
+   25  history > ms1-ssh-history.out /shared/
+   26  cd /shared/
+   27  ls
+   28  history > /shared/ms1-history-ssh.txt

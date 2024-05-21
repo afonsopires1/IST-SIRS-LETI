@@ -1,0 +1,41 @@
+ip addr add dev eth0 4.2.4.1/24 
+ip link set dev eth0 up
+ip route add default via 4.2.4.254
+
+
+
+
+
+cp /shared/ms1/client.crt ~
+cp /shared/ms1/client.key ~
+cp /shared/client.conf ~
+cp /shared/ca.crt ~
+cp /shared/ta.key ~
+cd root
+mkdir -p /dev/net
+mknod /dev/net/tun c 10 200
+chmod 600 /dev/net/tun
+
+
+openvpn client.conf &
+
+
+
+/etc/init.d/ssh start
+
+cd /root/
+mkdir .ssh  
+chmod 700 /root/.ssh/
+
+cd /shared/ssh/ms1
+cp * /root/.ssh/
+
+cd /root/.ssh/
+
+chmod 600 id_rsa     
+chmod 644 id_rsa.pub 
+chmod 644 known_hosts
+
+
+#por algum motivo isto tava a copiar coisas erradas
+#cp /shared/ssh/ms1 * /root/.ssh/

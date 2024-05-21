@@ -1,3 +1,0 @@
-ip addr add dev eth0 4.2.4.2/24 
-ip link set dev eth0 up
-ip route add default via 4.2.4.254
